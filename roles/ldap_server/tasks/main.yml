@@ -1,4 +1,0 @@
----
-# Main playbook for this role
-
-- include_tasks: openldap.yml

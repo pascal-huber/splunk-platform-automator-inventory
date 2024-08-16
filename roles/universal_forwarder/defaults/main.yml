@@ -1,5 +1,0 @@
----
-# Variables for this role
-
-splunk_install_app: splunkforwarder
-splunk_service_name: splunk
