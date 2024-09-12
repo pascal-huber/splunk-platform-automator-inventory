@@ -160,20 +160,22 @@ class InventoryModule(BaseFileInventoryPlugin):
 
                     if isinstance(group_data[key], NoneType):  # type: ignore[misc]
                         self.display.vvv('Skipping empty key (%s) in group (%s)' % (key, group))
-                    elif key == 'vars':
-                        for var in group_data[key]:
-                            self.inventory.set_variable(group, var, group_data[key][var])
-                    elif key == 'children':
-                        for subgroup in group_data[key]:
-                            subgroup = self._parse_group(subgroup, group_data[key][subgroup])
-                            self.inventory.add_child(group, subgroup)
 
                     elif key == 'hosts':
                         for host_pattern in group_data[key]:
                             hosts, port = self._parse_host(host_pattern)
+                            hosts = map(lambda h: 'dynamic.' + h , hosts)
                             self._populate_host_vars(hosts, group_data[key][host_pattern] or {}, group, port)
-                    else:
-                        self.display.warning('Skipping unexpected key (%s) in group (%s), only "vars", "children" and "hosts" are valid' % (key, group))
+                    # elif key == 'vars':
+                    #     for var in group_data[key]:
+                    #         self.inventory.set_variable(group, var, group_data[key][var])
+                    # elif key == 'children':
+                    #     for subgroup in group_data[key]:
+                    #         subgroup = self._parse_group(subgroup, group_data[key][subgroup])
+                    #         self.inventory.add_child(group, subgroup)
+
+                    # else:
+                    #     self.display.warning('Skipping unexpected key (%s) in group (%s), only "vars", "children" and "hosts" are valid' % (key, group))
 
         else:
             self.display.warning("Skipping '%s' as this is not a valid group definition" % group)
