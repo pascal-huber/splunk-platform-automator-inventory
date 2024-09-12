@@ -1,5 +1,5 @@
 plugin: lcs.splunk.sillyplugin
 all:
     hosts:
-        server1.example.com:
-        server2.example.com:
+        server1.silly.example.com:
+        server2.silly.example.com:
