@@ -95,13 +95,13 @@ class InventoryModule(BaseFileInventoryPlugin):
         super(InventoryModule, self).__init__()
 
     def verify_file(self, path):
-
-        valid = False
-        if super(InventoryModule, self).verify_file(path):
-            file_name, ext = os.path.splitext(path)
-            if not ext or ext in self.get_option('yaml_extensions'):
-                valid = True
-        return valid
+        return True
+        # valid = False
+        # if super(InventoryModule, self).verify_file(path):
+        #     file_name, ext = os.path.splitext(path)
+        #     if not ext or ext in self.get_option('yaml_extensions'):
+        #         valid = True
+        # return valid
 
     def parse(self, inventory, loader, path, cache=True):
         ''' parses the inventory file '''
