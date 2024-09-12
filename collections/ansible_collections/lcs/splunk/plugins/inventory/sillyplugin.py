@@ -161,10 +161,10 @@ class InventoryModule(BaseFileInventoryPlugin):
                     if isinstance(group_data[key], NoneType):  # type: ignore[misc]
                         self.display.vvv('Skipping empty key (%s) in group (%s)' % (key, group))
 
-                    elif key == 'hosts':
+                    elif key == 'silly-hosts':
                         for host_pattern in group_data[key]:
                             hosts, port = self._parse_host(host_pattern)
-                            hosts = map(lambda h: 'dynamic.' + h , hosts)
+                            hosts = map(lambda h: 'silly.' + h , hosts)
                             self._populate_host_vars(hosts, group_data[key][host_pattern] or {}, group, port)
                     # elif key == 'vars':
                     #     for var in group_data[key]:
