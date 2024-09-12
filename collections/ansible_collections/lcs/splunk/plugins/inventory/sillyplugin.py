@@ -88,7 +88,7 @@ NoneType = type(None)
 
 class InventoryModule(BaseFileInventoryPlugin):
 
-    NAME = 'yaml'
+    NAME = 'sillyplugin'
 
     def __init__(self):
 
